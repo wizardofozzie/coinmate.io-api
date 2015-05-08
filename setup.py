@@ -13,7 +13,7 @@ setup(
     install_requires = ['hashlib'],
     packages = ['coinmate_api'],
     package_dir = {'': 'src'},
-    version = '0.0.1',
+    version = '1.0.0',
     description = 'CoinMate.io BitCoin processor API.',
     author = 'tty02-fl on github',
     author_email = 'tty02.fl@gmail.com',
@@ -27,9 +27,15 @@ setup(
 Coinmate.io API wrapper
 -----------------------
 
-Basic CoinMate.io API wrapper, for now it only support get the balance ::
+Basic CoinMate.io API wrapper, that support get the balance, withdrawal
+and more ::
 
     from coinmate_api import coinmate
-    cm_api = coinmate('privateApiKey', 'publicApiKey', '3333')
-    cm_api.get_usd_available()
+    cm_api = coinmate('privateApiKey', 'publicApiKey', 'client_id')
+    print cm_api.get_usd_available()
+    result = cm_api.withdraw_bitcoins(2,'1HB1by2ZkbFAwEAqC5zwoHcU1DroBysrPG')
+    if not result['error']:
+        print "Transaction ID:"
+        print result['data']
+    ticker_info = cm_api.get_ticker()
 ''')
