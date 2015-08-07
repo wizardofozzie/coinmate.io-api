@@ -13,7 +13,7 @@ setup(
     install_requires = ['hashlib'],
     packages = ['coinmate_api'],
     package_dir = {'': 'src'},
-    version = '1.0.0',
+    version = '1.1.0',
     description = 'CoinMate.io BitCoin processor API.',
     author = 'tty02-fl on github',
     author_email = 'tty02.fl@gmail.com',

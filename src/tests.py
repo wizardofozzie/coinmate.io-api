@@ -12,18 +12,18 @@ class TestStringMethods(unittest.TestCase):
 
     def setUp(self):
         self.cm = coinmate('privateApiKey', 'publicApiKey', '1111')
-        self.cm.API_URL = 'https://private-anon-c924a24db-coinmate.apiary-mock.com/api/'
+        self.cm.API_URL = 'https://private-anon-ef457d374-coinmate.apiary-mock.com/api/'
 
     def test_balance(self):
         balances = self.cm.get_balance()
         assert 'data' in balances
-        assert 'USD' in balances['data']
+        assert 'EUR' in balances['data']
         assert 'BTC' in balances['data']
         assert 'error' in balances
 
-    def test_usd_balance(self):
-        balances = self.cm.get_usd_balance()
-        assert balances['currency'] == "USD"
+    def test_eur_balance(self):
+        balances = self.cm.get_eur_balance()
+        assert balances['currency'] == "EUR"
         assert 'balance' in balances
         assert 'reserved' in balances
         assert 'available' in balances
@@ -35,8 +35,8 @@ class TestStringMethods(unittest.TestCase):
         assert 'reserved' in balances
         assert 'available' in balances
 
-    def test_usd_available(self):
-        self.assertIs(type(self.cm.get_usd_available()), float)
+    def test_eur_available(self):
+        self.assertIs(type(self.cm.get_eur_available()), float)
 
     def test_btc_available(self):
         self.assertIs(type(self.cm.get_btc_available()), float)

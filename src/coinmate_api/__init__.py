@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
  CoinMate.io API implementation.
+ Version 1.1.0
 """
 
 from urllib2 import Request, urlopen
@@ -63,7 +64,7 @@ class coinmate:
             headers = {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
-        request = Request(self.API_URL+url, data=values, headers=headers)
+        request = Request(self.API_URL + url, data=values, headers=headers)
         return urlopen(request).read()
 
     def get_balance(self):
@@ -102,20 +103,20 @@ class coinmate:
         resp = self.__do_request('balances', values)
         return json.loads(resp)
 
-    def get_usd_balance(self):
+    def get_eur_balance(self):
         """
-        Get USD balance info.
+        Get EUR balance info.
 
         Returns
         -------
-        A dictionary with USD balance info like ::
+        A dictionary with EUR balance info like ::
 
         {
           "error": false,
           "errorMessage": null,
           "data": {
-            "USD": {
-              "currency": "USD",
+            "EUR": {
+              "currency": "EUR",
               "balance": 20925.48295,
               "reserved": 9.009,
               "available": 20916.47395
@@ -127,15 +128,15 @@ class coinmate:
         if balance['error']:
             return None
         else:
-            return balance['data']['USD']
+            return balance['data']['EUR']
 
-    def get_usd_available(self):
-        """ Get balance available in USD account."""
+    def get_eur_available(self):
+        """ Get balance available in EUR account."""
         balance = self.get_balance()
         if balance['error']:
             return None
         else:
-            return round(float(balance['data']['USD']['available']), 2)
+            return round(float(balance['data']['EUR']['available']), 2)
 
     def get_btc_balance(self):
         """
